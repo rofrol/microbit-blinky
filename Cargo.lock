@@ -112,6 +112,7 @@ dependencies = [
 name = "microrust-start"
 version = "1.0.0"
 dependencies = [
+ "cortex-m-rt 0.6.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "microbit 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "panic-halt 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
