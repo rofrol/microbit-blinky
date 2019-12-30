@@ -45,3 +45,41 @@ Here https://github.com/rust-lang/compiler-builtins/issues/75#issuecomment-47287
 
 There was this issue for adding thumbv6m https://github.com/rust-lang/compiler-builtins/issues/33
 
+Looks like thumbv6m is in compiler-builtins https://github.com/rust-lang/compiler-builtins/pull/276
+
+I have asked questions:
+
+- https://stackoverflow.com/questions/59528354/rust-and-microbit-udiv-rs-no-such-file-or-directory
+- https://users.rust-lang.org/t/micro-bit-udiv-rs-no-such-file-or-directory/36313
+
+I will try to add `compiler_builtins` to project.
+
+## can't find crate `core`
+
+I am trying rust nightly because stable does not seem work with `compiler_builtins`.
+
+I needed to add target
+
+`rustup target add thumbv6m-none-eabi --toolchain nightly`
+
+https://github.com/rust-lang/rust/issues/63519#issuecomment-520841266
+
+## Works but why?
+
+I have switched to stable as here they say stable is ok https://github.com/rust-embedded/cortex-m-quickstart.
+
+I have also cloned compiler-builtins repo to `~/.cargo/registry/src/github.com-1ecc6299db9ec823/compiler_builtins-0.1.18/` and also done `git checkout 0.1.18` in it.
+
+I have even done this `sudo ln -s /home/roman/.cargo/ /cargo`
+
+Also I have created file `.gdbinit` and also this was needed:
+
+```bash
+$ cat ~/.gdbinit
+add-auto-load-safe-path /media/f/tobbie2/microrust-start/.gdbinit
+```
+
+After starting `gdb-multiarch -q target/thumbv6m-none-eabi/debug/microrust-start`, there is no more info about `udiv.rs`.
+
+In the `.gdbinit` I needed to change from `break rustled::main` to just `break main`.
+
